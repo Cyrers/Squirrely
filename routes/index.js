@@ -1,10 +1,15 @@
-const express = require("express"); // import express
-const router = express.Router(); // initialize express router
+const express = require('express')
+const router = express.Router()
+const Book = require('../models/book')
 
-// Create a route (root)
-router.get("/", (req, res) => {
-  res.render("index");
-});
+router.get('/', async (req, res) => {
+  let books
+  try {
+    books = await Book.find().sort({ createdAt: 'desc' }).limit(10).exec()
+  } catch {
+    books = []
+  }
+  res.render('index', { books: books })
+})
 
-// Export router
-module.exports = router;
+module.exports = router
