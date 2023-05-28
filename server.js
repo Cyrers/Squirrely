@@ -2,11 +2,22 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config(); // import dotenv
 }
 
+// Import modules
 const express = require("express"); // import express
-const app = express(); // initialize express
-const expressLayouts = require("express-ejs-layouts"); // import express-ejs-layouts
+const mongoose = require("mongoose"); // import mongoose
 const bodyParser = require("body-parser"); // import body-parser
-const methodOverride = require('method-override')
+const expressLayouts = require("express-ejs-layouts"); // import express-ejs-layouts
+const methodOverride = require("method-override"); // import method-override
+
+const app = express(); // initialize express
+
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
+app.set("layout", "layouts/layout");
+app.use(expressLayouts);
+app.use(methodOverride("_method"));
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
 // Require routes
 const indexRouter = require("./routes/index"); // import routes/index.js
@@ -14,18 +25,7 @@ const authorRouter = require("./routes/authors"); // import authors.js
 const bookRouter = require("./routes/books"); // import books.js
 const accountRouter = require("./routes/account"); // import account.js
 
-
-app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
-app.set('layout', 'layouts/layout')
-app.use(expressLayouts)
-app.use(methodOverride('_method'))
-app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
-
-
 // Connect to database
-const mongoose = require("mongoose"); // import mongoose
 mongoose.connect(process.env.DATABASE_URL, {}); // connect to database
 const db = mongoose.connection; // initialize mongoose connection
 db.on("error", (error) => console.error(error)); // log error
