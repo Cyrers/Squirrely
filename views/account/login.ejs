@@ -1,6 +1,8 @@
-<h1>Se connecter</h1>
-<form action="login" method="POST">
-  <div>
+<div class="login">
+  <h1>Se connecter</h1>
+
+  <form action="login" method="POST">
+    <label for="username"><i class="fas fa-user"></i></label>
     <input
       type="text"
       id="username"
@@ -8,8 +10,7 @@
       placeholder="Username"
       required
     />
-  </div>
-  <div>
+    <label for="password"><i class="fas fa-lock"></i></label>
     <input
       type="password"
       id="password"
@@ -17,8 +18,8 @@
       placeholder="password"
       required
     />
-  </div>
-  <button type="submit">Connexion</button>
-</form>
-<!-- Redirect to register page-->
-<a href="register">S'inscrire</a>
+    <button type="submit">Connexion</button>
+  </form>
+  <!-- Redirect to register page-->
+  <a href="register">S'inscrire</a>
+</div>

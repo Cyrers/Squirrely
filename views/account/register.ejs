@@ -1,6 +1,8 @@
-<h1>S'inscrire</h1>
-<form action="register" method="POST">
-  <div>
+<div class="register">
+  <h1>S'inscrire</h1>
+
+  <form action="register" method="POST">
+    <label for="username"><i class="fas fa-user"></i></label>
     <input
       type="text"
       id="username"
@@ -8,8 +10,7 @@
       placeholder="Username"
       required
     />
-  </div>
-  <div>
+    <label for="password"><i class="fas fa-lock"></i></label>
     <input
       type="password"
       id="password"
@@ -17,7 +18,8 @@
       placeholder="password"
       required
     />
-  </div>
-  <button type="submit">S'inscrire</button>
-</form>
-<a href="login">Se connecter</a>
+
+    <button type="submit">S'inscrire</button>
+  </form>
+  <a href="login">Se connecter</a>
+</div>
