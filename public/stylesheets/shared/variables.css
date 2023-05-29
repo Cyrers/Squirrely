@@ -1,6 +1,6 @@
 :root {
-  --color-danger-hue: #8d0000be;
-  --color-background-dark: blue;
-  --color-background-light : cyan;
-  --color-text-light: indigo;
+  --color-danger-hue: #2e0202be;
+  --color-background-dark: rgba(224, 8, 8, 0.733);
+  --color-background-light : rgba(216, 178, 10, 0.76);
+  --color-text-light: rgb(31, 95, 212);
 }
