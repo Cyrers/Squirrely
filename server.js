@@ -18,6 +18,13 @@ app.use(expressLayouts);
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
+app.use(
+  require("express-session")({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Require routes
 const indexRouter = require("./routes/index"); // import routes/index.js

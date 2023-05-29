@@ -1,10 +1,12 @@
-const express = require("express");
+var express = require("express");
+var passport = require("passport"); // import passport
+//var bodyParser = require("body-parser"); // import body-parser
+var LocalStrategy = require("passport-local"); // import passport-local
+var passportLocalMongoose = require("passport-local-mongoose"); // import passport-local-mongoose
 const router = express.Router();
-var passport = require("passport");
-var LocalStrategy = require("passport-local");
-var passportLocalMongoose = require("passport-local-mongoose");
 const User = require("../models/user");
-var app = express();
+
+var app = express(); // initialize express
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -28,21 +30,15 @@ router.get("/login", (req, res) => {
 // Handle login
 router.post("/login", async (req, res) => {
   try {
-    // check if the user exists
-    const user = await User.findOne({ username: req.body.username });
-    if (user) {
-      //check if password matches
-      const result = req.body.password === user.password;
-      if (result) {
-        res.status(200).json(user);
-      } else {
-        res.status(400).json({ error: "password doesn't match" });
-      }
-    } else {
-      res.status(400).json({ error: "User doesn't exist" });
-    }
-  } catch (error) {
-    res.status(400).json({ error });
+    // Authenticate user
+    await passport.authenticate("local", {
+      successRedirect: "/", // Redirect to home page
+      failureRedirect: "login", // Redirect to login page
+    })(req, res);
+    //console.log("Success");
+  } catch {
+    res.redirect("/account/login");
+    //console.log("Error");
   }
 });
 
@@ -54,12 +50,19 @@ router.get("/register", (req, res) => {
 
 // Handle register
 router.post("/register", async (req, res) => {
-  const user = await User.create({
-    username: req.body.username,
-    password: req.body.password,
-  });
-
-  return res.status(200).json(user);
+  try {
+    // Create a new user
+    const user = new User({
+      username: req.body.username,
+      password: req.body.password,
+    });
+    // Save user
+    await user.save();
+    // Redirect to login page
+    res.redirect("login");
+  } catch {
+    res.redirect("/account/register");
+  }
 });
 
 // Export router
