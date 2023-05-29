@@ -7,6 +7,7 @@
 .header-title {
   color: var(--color-text-light);
   text-decoration: none;
+  text-justify: center;
   font-size: var(--nav-title-font-size);
   font-weight: var(--nav-title-font-weight);
 }
@@ -21,6 +22,7 @@
 
 .header-nav ul {
   display: flex;
+  text-decoration: none;
   margin: 0;
   padding: 0;
 }
