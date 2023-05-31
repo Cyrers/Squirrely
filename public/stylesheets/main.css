@@ -26,15 +26,18 @@ body {
     var(--color-background-dark),
     var(--color-background-light)
   );
+  margin: 0 10%;
+  height: 100vh;
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
   margin: auto;
   margin-bottom: 3rem;
 }
 
 .inner-container {
+  width: 100%;
   margin: 0 2rem;
 }
 

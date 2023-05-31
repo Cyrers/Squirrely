@@ -2,6 +2,7 @@
   width: 400px;
   background-color: #ffffff;
   margin: 100px auto;
+  border-radius: 5px;
 }
 .login h1 {
   text-align: center;

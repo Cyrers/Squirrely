@@ -17,18 +17,22 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 1rem;
   margin-bottom: 5rem;
 }
 
 .header-nav ul {
   display: flex;
   text-decoration: none;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
 
 .header-nav li {
   list-style: none;
+  padding: 0.5rem;
 }
 
 .header-nav li a {
@@ -38,6 +42,7 @@
   padding: 1rem;
 }
 
-.header-nav li a:hover, .header-title:hover {
+.header-nav li a:hover,
+.header-title:hover {
   color: white;
 }
